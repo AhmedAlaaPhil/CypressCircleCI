@@ -15,8 +15,7 @@ jobs:
   run-on-chrome:
     executor: cypress/default
     steps:
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
+      - browser-tools/install-browser-tools
       - attach_workspace:
           at: ~/
       - cypress/run-tests:
@@ -24,8 +23,7 @@ jobs:
   run-on-firefox:
     executor: cypress/default
     steps:
-      - browser-tools/install-firefox
-      - browser-tools/install-firefoxdriver
+      - browser-tools/install-browser-tools
       - attach_workspace:
           at: ~/
       - cypress/run-tests:
