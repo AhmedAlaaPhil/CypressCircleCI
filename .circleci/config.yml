@@ -1,0 +1,40 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@3
+jobs:
+  install-and-persist:
+    executor: cypress/default
+    steps:
+      - cypress/install
+      - persist_to_workspace:
+          paths:
+            - .cache/Cypress
+            - project
+          root: ~/
+  run-on-chrome:
+    executor: cypress/default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - cypress/run-tests:
+          cypress-command: npx cypress run --browser chrome
+  run-on-firefox:
+    executor: cypress/default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - cypress/run-tests:
+          cypress-command: npx cypress run --browser firefox
+workflows:
+  use-my-orb:
+    jobs:
+      - install-and-persist:
+          name: Install & Persist To Workspace
+      - run-on-chrome:
+          name: Run Tests in Chrome
+          requires:
+            - Install & Persist To Workspace
+      - run-on-firefox:
+          name: Run Tests in FireFox
+          requires:
+            - Install & Persist To Workspace
