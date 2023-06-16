@@ -25,7 +25,7 @@ jobs:
     executor: cypress/default
     steps:
       - browser-tools/install-firefox
-      - browser-tools/install-firefoxriver
+      - browser-tools/install-firefoxdriver
       - attach_workspace:
           at: ~/
       - cypress/run-tests:
