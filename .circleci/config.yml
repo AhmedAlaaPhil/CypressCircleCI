@@ -28,8 +28,6 @@ jobs:
           at: ~/
       - cypress/run-tests:
           cypress-command: npx cypress run --browser firefox
-          install-browsers: true
-          start-command: npm run start:dev
 
 workflows:
   use-my-orb:
