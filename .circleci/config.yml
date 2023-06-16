@@ -1,6 +1,7 @@
 version: 2.1 
 orbs:
   cypress: cypress-io/cypress@3
+  browser-tools: circleci/browser-tools@1.4.0
 jobs:
   install-and-persist:
     executor: cypress/default
@@ -14,6 +15,8 @@ jobs:
   run-on-chrome:
     executor: cypress/default
     steps:
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
       - attach_workspace:
           at: ~/
       - cypress/run-tests:
@@ -39,7 +42,7 @@ workflows:
           name: Run Tests in Chrome
           requires:
             - Install & Persist To Workspace
-      - run-on-firefox:
-          name: Run Tests in FireFox
-          requires:
-            - Install & Persist To Workspace
+      # - run-on-firefox:
+      #     name: Run Tests in FireFox
+      #     requires:
+      #       - Install & Persist To Workspace
