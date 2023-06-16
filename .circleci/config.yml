@@ -18,6 +18,8 @@ jobs:
           at: ~/
       - cypress/run-tests:
           cypress-command: npx cypress run --browser chrome
+          install-browsers: true
+          start-command: npm run start:dev
   run-on-firefox:
     executor: cypress/default
     steps:
@@ -25,6 +27,9 @@ jobs:
           at: ~/
       - cypress/run-tests:
           cypress-command: npx cypress run --browser firefox
+          install-browsers: true
+          start-command: npm run start:dev
+
 workflows:
   use-my-orb:
     jobs:
