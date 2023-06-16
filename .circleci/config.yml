@@ -42,7 +42,7 @@ workflows:
           name: Run Tests in Chrome
           requires:
             - Install & Persist To Workspace
-      # - run-on-firefox:
-      #     name: Run Tests in FireFox
-      #     requires:
-      #       - Install & Persist To Workspace
+      - run-on-firefox:
+          name: Run Tests in FireFox
+          requires:
+            - Install & Persist To Workspace
