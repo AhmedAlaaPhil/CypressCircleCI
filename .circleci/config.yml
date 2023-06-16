@@ -19,7 +19,7 @@ jobs:
       - browser-tools/install-chromedriver
       - attach_workspace:
           at: ~/
-      - cypress/run-tests:
+      - cypress/run:
           cypress-command: npx cypress run --browser chrome
           install-browsers: true
           start-command: npm run start:dev
